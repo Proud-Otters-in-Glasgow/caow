@@ -1,0 +1,37 @@
+﻿<Window x:Class="caow.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:caow"
+        xmlns:vm="clr-namespace:caow.ViewModel"
+        mc:Ignorable="d"
+        Title="Caow 0.1" Height="450" Width="800">
+    <Window.Resources>
+    <vm:ViewModelClass x:Key="MainVM"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource MainVM}">
+        <TabControl Name="tabControl">
+            <TabItem Header="Procesy" Name="tabProcess">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="9*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <ListBox Grid.Row="0" Margin="5" VerticalAlignment="Stretch" ItemsSource="{Binding Path=ProcessList}" FontFamily="Consolas">
+                    </ListBox>
+                    <Grid Grid.Row="1" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Content="Zabij" Width="90" Margin="5" HorizontalAlignment="Left"/>
+                        <Button Grid.Column="1" Content="Informacje" Width="90" Margin="5" HorizontalAlignment="Left"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Obciążenie" Name="tabGraph">
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
