@@ -63,7 +63,19 @@ namespace caow.ViewModel
                     (arg) => true);
                 return selectedProcessChanged;
             }
+        }
 
+        private ICommand killSelectedProcess = null;
+        public ICommand KillSelectedProcess
+        {
+            get
+            {
+                if (killSelectedProcess == null)
+                    killSelectedProcess = new RelayCommand(
+                    (arg) => { process.KillProcess(SelectedProcess); },
+                    (arg) => true);
+                return killSelectedProcess;
+            }
         }
 
         public ViewModelClass()

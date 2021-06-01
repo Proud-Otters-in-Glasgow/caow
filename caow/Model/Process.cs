@@ -17,6 +17,12 @@ namespace caow.Model
             return processList;
         }
 
+        public string KillProcess(Process process)
+        {
+            process.Kill();
+            return "";
+        }
+
         private string PrettyPrintProcess(Process process)
         {
             string returnString = process.Id.ToString();
