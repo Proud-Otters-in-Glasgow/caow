@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace caow.Model
 {
@@ -17,10 +18,17 @@ namespace caow.Model
             return processList;
         }
 
-        public string KillProcess(Process process)
+        public int KillProcess(Process process)
         {
-            process.Kill();
-            return "";
+            try
+            {
+                process.Kill();
+            }
+            catch(Win32Exception)
+            {
+                return 1;
+            }
+            return 0;
         }
 
         private string PrettyPrintProcess(Process process)

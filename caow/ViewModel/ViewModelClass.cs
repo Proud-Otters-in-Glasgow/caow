@@ -13,6 +13,7 @@ namespace caow.ViewModel
 {
     using BaseClass;
     using Model;
+    using View;
     class ViewModelClass : ViewModelBase
     {
         ProcessHandler process = new ProcessHandler();
@@ -72,7 +73,11 @@ namespace caow.ViewModel
             {
                 if (killSelectedProcess == null)
                     killSelectedProcess = new RelayCommand(
-                    (arg) => { process.KillProcess(SelectedProcess); },
+                    (arg) => {
+                        int err = process.KillProcess(SelectedProcess);
+                        if(err != 0)
+                            Alerter.ErrorAlert(err);
+                    },
                     (arg) => true);
                 return killSelectedProcess;
             }
