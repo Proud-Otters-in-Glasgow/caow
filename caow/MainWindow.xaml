@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:caow"
         xmlns:vm="clr-namespace:caow.ViewModel"
         mc:Ignorable="d"
@@ -18,7 +19,12 @@
                         <RowDefinition Height="9*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <ListView Margin="10" Name="processListView" ItemsSource="{Binding ProcessList}">
+                    <ListView Margin="10" Name="processListView" ItemsSource="{Binding ProcessList}" SelectedItem="{Binding SelectedProcess, Mode=TwoWay}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding SelectedProcessChanged}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding Id}" />
