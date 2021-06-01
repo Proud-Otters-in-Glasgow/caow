@@ -11,15 +11,10 @@ namespace caow.Model
     {
         private Process[] processList;
 
-        public string[] GetProcesses()
+        public Process[] GetProcesses()
         {
             processList = Process.GetProcesses();
-            List<string> returnList = new List<string>();
-            foreach (Process process in processList)
-            {
-                returnList.Add(PrettyPrintProcess(process));
-            }
-            return returnList.ToArray();
+            return processList;
         }
 
         private string PrettyPrintProcess(Process process)

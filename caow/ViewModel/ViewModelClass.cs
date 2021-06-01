@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Timers;
+using System.Diagnostics;
 
 namespace caow.ViewModel
 {
@@ -16,9 +17,9 @@ namespace caow.ViewModel
         ProcessHandler process = new ProcessHandler();
         Timer processListTimer = new Timer(1000);
 
-        public ObservableCollection<string> ProcessList
+        public ObservableCollection<Process> ProcessList
         {
-            get { return new ObservableCollection<string>(process.GetProcesses()); }
+            get { return new ObservableCollection<Process>(process.GetProcesses()); }
         }
 
         private void UpdateProcessList(Object source, ElapsedEventArgs e)

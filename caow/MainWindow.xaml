@@ -18,8 +18,15 @@
                         <RowDefinition Height="9*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <ListBox Grid.Row="0" Margin="5" VerticalAlignment="Stretch" ItemsSource="{Binding Path=ProcessList}" FontFamily="Consolas">
-                    </ListBox>
+                    <ListView Margin="10" Name="processListView" ItemsSource="{Binding ProcessList}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding Id}" />
+                                <GridViewColumn Header="Nazwa" Width="200" DisplayMemberBinding="{Binding ProcessName}" />
+                                <GridViewColumn Header="Priorytet" Width="150" DisplayMemberBinding="{Binding PriorityClass}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                     <Grid Grid.Row="1" HorizontalAlignment="Left">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
