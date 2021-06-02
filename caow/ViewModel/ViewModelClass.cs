@@ -27,6 +27,8 @@ namespace caow.ViewModel
         private void UpdateProcessList(Object source, ElapsedEventArgs e)
         {
             TriggerPropertyChanged(nameof(ProcessList));
+            TriggerPropertyChanged(nameof(CurrentCPULoad));
+            TriggerPropertyChanged(nameof(CurrentRAMUsage));
         }
 
         private Process selectedProcess;
@@ -39,7 +41,17 @@ namespace caow.ViewModel
                     selectedProcess = value;
             }
         }
-        
+
+        public float CurrentCPULoad
+        {
+            get { return process.GetCPULoad(); }
+        }
+
+        public string CurrentRAMUsage
+        {
+            get { return process.GetRAMUsage(); }
+        }
+
         private ICommand selectedProcessChanged = null;
         public ICommand SelectedProcessChanged
         {
