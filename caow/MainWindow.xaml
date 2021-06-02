@@ -19,7 +19,7 @@
                         <RowDefinition Height="9*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <ListView Margin="10" Name="processListView" ItemsSource="{Binding ProcessList}" SelectedItem="{Binding SelectedProcess, Mode=TwoWay}">
+                    <ListView Margin="10" Name="processListView" ItemsSource="{Binding ProcessList}" SelectedItem="{Binding SelectedProcess, Mode=TwoWay}" GridViewColumnHeader.Click="GridViewColumnHeaderClickedHandler">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <i:InvokeCommandAction Command="{Binding SelectedProcessChanged}"/>
@@ -29,7 +29,7 @@
                             <GridView>
                                 <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding Id}" />
                                 <GridViewColumn Header="Nazwa" Width="200" DisplayMemberBinding="{Binding ProcessName}" />
-                                <GridViewColumn Header="Priorytet" Width="150" DisplayMemberBinding="{Binding PriorityClass}"/>
+                                <!--<GridViewColumn Header="Priorytet" Width="150" DisplayMemberBinding="{Binding PriorityClass}"/>-->
                             </GridView>
                         </ListView.View>
                     </ListView>
