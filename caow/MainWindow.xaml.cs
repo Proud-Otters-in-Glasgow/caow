@@ -91,6 +91,8 @@ namespace caow
 
                 Sort(sortBy, _lastDirection);
             }
+            CPUGraph.RefreshChart();
+            RAMGraph.RefreshChart();
             ((INotifyCollectionChanged)processListView.Items).CollectionChanged += ListView_CollectionChanged;
         }
     }
