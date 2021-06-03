@@ -29,6 +29,7 @@ namespace caow.ViewModel
             TriggerPropertyChanged(nameof(ProcessList));
             TriggerPropertyChanged(nameof(CurrentCPULoad));
             TriggerPropertyChanged(nameof(CurrentRAMUsage));
+            TriggerPropertyChanged(nameof(CPUReadingsHistory));
         }
 
         private Process selectedProcess;
@@ -50,6 +51,11 @@ namespace caow.ViewModel
         public string CurrentRAMUsage
         {
             get { return process.GetRAMUsage(); }
+        }
+
+        public ObservableCollection<int> CPUReadingsHistory
+        {
+            get { return new ObservableCollection<int>(process.GetCPUReadingHistory()); }
         }
 
         private ICommand selectedProcessChanged = null;

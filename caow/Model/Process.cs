@@ -15,7 +15,7 @@ namespace caow.Model
         private PerformanceCounter cpuThing;
         private PerformanceCounter ramThing;
         private float totalRAM;
-        private float useRAM;
+        private List<int> cpuReadings;
 
         public Process[] GetProcesses()
         {
@@ -36,7 +36,15 @@ namespace caow.Model
             return 0;
         }
 
-        public float GetCPULoad() => cpuThing.NextValue();
+        public float GetCPULoad()
+        {
+            float x = cpuThing.NextValue();
+            cpuReadings.Add(Convert.ToInt32(x));
+            cpuReadings.RemoveAt(0);
+            return x;
+        }
+
+        public int[] GetCPUReadingHistory() => cpuReadings.ToArray();
 
         public string GetRAMUsage()
         {
@@ -86,6 +94,9 @@ namespace caow.Model
             cpuThing.InstanceName = "_Total";
             ramThing = new PerformanceCounter("Memory", "Available MBytes");
             totalRAM = GetTotalRAM();
+            cpuReadings = new List<int>();
+            for (int i = 0; i < 30; i++)
+                cpuReadings.Add(0);
         }
     }
 }
