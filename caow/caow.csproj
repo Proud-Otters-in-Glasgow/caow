@@ -70,6 +70,7 @@
     <Compile Include="View\Charter.xaml.cs">
       <DependentUpon>Charter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Converters.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
