@@ -32,7 +32,7 @@
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Zużycie RAM" FontSize="24" Margin="5" FontFamily="Segoe UI Light" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="3" Grid.Column="0" Text="Priorytet" FontSize="24" Margin="5" FontFamily="Segoe UI Light" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding process.Id}" FontFamily="Segoe UI Semibold" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CPULoad}" FontFamily="Segoe UI Semibold" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CPULoad, StringFormat={}{0:#,#.00}%}" FontFamily="Segoe UI Semibold" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding process.WorkingSet64, Converter={StaticResource RAMConverter}}" FontFamily="Segoe UI Semibold" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding process.PriorityClass}" FontFamily="Segoe UI Semibold" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>

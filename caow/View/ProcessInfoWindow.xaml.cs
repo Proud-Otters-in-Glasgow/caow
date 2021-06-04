@@ -24,8 +24,7 @@ namespace caow.View
         public static readonly DependencyProperty ObservedProcess = DependencyProperty.Register(nameof(process), typeof(Process), typeof(ProcessInfoWindow), new FrameworkPropertyMetadata(null));
         //public static readonly DependencyProperty ObservedCPULoad = DependencyProperty.Register(nameof(CPULoad), typeof(int), typeof(ProcessInfoWindow), new FrameworkPropertyMetadata(null));
         Timer processListTimer = new Timer(500);
-        private int ptime = 0;
-        private int time = 0;
+        private PerformanceCounter counter;
         public Process process
         {
             get
@@ -37,22 +36,12 @@ namespace caow.View
                 SetValue(ObservedProcess, value);
             }
         }
-        public int CPULoad
+        public float CPULoad
         {
             
             get
             {
-                Process p = (Process)GetValue(ObservedProcess);
-                if (time == 0)
-                {
-                    time = DateTime.Now.Millisecond;
-                    ptime = p.TotalProcessorTime.Milliseconds;
-                    return 0;
-                }
-                int outx = (p.TotalProcessorTime.Milliseconds - ptime) / (DateTime.Now.Millisecond - time);
-                time = DateTime.Now.Millisecond;
-                ptime = p.TotalProcessorTime.Milliseconds;
-                return outx;
+                return counter.NextValue();
             }
             set
             {
@@ -66,6 +55,9 @@ namespace caow.View
         public ProcessInfoWindow(Process processOfInterest)
         {
             process = processOfInterest;
+            counter = new PerformanceCounter("Process", "% Processor Time", process.ProcessName);
+            counter.NextValue();
+            counter.NextValue();
             InitializeComponent();
             processListTimer.Elapsed += UpdateProcess;
             processListTimer.AutoReset = true;
