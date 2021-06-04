@@ -18,6 +18,7 @@ namespace caow.ViewModel
     {
         ProcessHandler process = new ProcessHandler();
         Timer processListTimer = new Timer(1000);
+
         private ObservableCollection<Process> processList;
         public ObservableCollection<Process> ProcessList
         {
@@ -104,6 +105,27 @@ namespace caow.ViewModel
                     },
                     (arg) => true);
                 return killSelectedProcess;
+            }
+        }
+
+        private ICommand showProcessInfo = null;
+        public ICommand ShowProcessInfo
+        {
+            get
+            {
+                if (showProcessInfo == null)
+                    showProcessInfo = new RelayCommand(
+                    (arg) => {
+                        if (selectedProcess == null)
+                        {
+                            Alerter.ErrorAlert(2);
+                            return;
+                        }
+                        var info = new ProcessInfoWindow(selectedProcess);
+                        info.ShowDialog();
+                    },
+                    (arg) => true);
+                return showProcessInfo;
             }
         }
 

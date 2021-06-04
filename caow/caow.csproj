@@ -71,6 +71,9 @@
       <DependentUpon>Charter.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Converters.cs" />
+    <Compile Include="View\ProcessInfoWindow.xaml.cs">
+      <DependentUpon>ProcessInfoWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -84,6 +87,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Charter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProcessInfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

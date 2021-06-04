@@ -11,7 +11,8 @@ namespace caow.View
     {
         private static string[] ErrorMessages = new string[]
         {
-            "Brak dostępu!"
+            "Brak dostępu!",
+            "Nie zaznaczono procesu!"
         };
 
         public static void ErrorAlert(int errcode)

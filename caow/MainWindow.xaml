@@ -42,7 +42,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Content="Informacje" Width="90" Margin="5" HorizontalAlignment="Left"/>
+                        <Button Grid.Column="0" Command="{Binding ShowProcessInfo}" Content="Informacje" Width="90" Margin="5" HorizontalAlignment="Left"/>
                         <Button Grid.Column="1" Command="{Binding KillSelectedProcess}" Content="Zakończ proces" Width="120" Margin="5" HorizontalAlignment="Left"/>
                     </Grid>
                 </Grid>
