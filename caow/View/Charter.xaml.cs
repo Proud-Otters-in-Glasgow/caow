@@ -22,7 +22,7 @@ namespace caow.View
     /// </summary>
     public partial class Charter : UserControl
     {
-        public static readonly DependencyProperty CurrentDataPoints = DependencyProperty.Register(nameof(DataPoints), typeof(ObservableCollection<int>), typeof(Charter), new FrameworkPropertyMetadata(null));
+        public static readonly DependencyProperty CurrentDataPoints = DependencyProperty.Register(nameof(DataPoints), typeof(ObservableCollection<int>), typeof(Charter), new FrameworkPropertyMetadata(new PropertyChangedCallback(DataChanged)));
         public static readonly DependencyProperty CurrentPlotColor = DependencyProperty.Register(nameof(PlotColor), typeof(Color), typeof(Charter), new FrameworkPropertyMetadata(null));
         public ObservableCollection<int> DataPoints
         {
@@ -33,7 +33,6 @@ namespace caow.View
             set
             {
                 SetValue(CurrentDataPoints, value);
-                RefreshChart();
             }
         }
         public Color PlotColor
@@ -48,6 +47,12 @@ namespace caow.View
             }
         }
         private double VDividerBarOffset = 0;
+
+        private static void DataChanged(DependencyObject d, DependencyPropertyChangedEventArgs a)
+        {
+            Charter c = (Charter)d;
+            c.RefreshChart();
+        }
         private void ClearCanvas() => GraphCanvas.Children.Clear();
         private void DrawChart()
         {
