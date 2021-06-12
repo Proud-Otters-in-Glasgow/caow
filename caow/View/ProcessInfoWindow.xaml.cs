@@ -24,7 +24,6 @@ namespace caow.View
     public partial class ProcessInfoWindow : Window
     {
         public static readonly DependencyProperty ObservedProcess = DependencyProperty.Register(nameof(process), typeof(ProcessCounter), typeof(ProcessInfoWindow), new FrameworkPropertyMetadata(null));
-        //public static readonly DependencyProperty ObservedCPULoad = DependencyProperty.Register(nameof(CPULoad), typeof(int), typeof(ProcessInfoWindow), new FrameworkPropertyMetadata(null));
         public ProcessCounter process
         {
             get
@@ -40,9 +39,7 @@ namespace caow.View
         public ProcessInfoWindow(ProcessCounter p)
         {
             process = p;
-            //counter = new PerformanceCounter("Process", "% Processor Time", process.ProcessName);
-            //counter.NextValue();
-            //counter.NextValue();
+            this.Title = "Szczegóły: " + p.Name + " (" + p.ID + ")";
             InitializeComponent();
         }
 

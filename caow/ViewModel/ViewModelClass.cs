@@ -17,6 +17,7 @@ namespace caow.ViewModel
     class ViewModelClass : ViewModelBase
     {
         ProcessHandler process = new ProcessHandler();
+        SystemInfo sysinfo = new SystemInfo();
         Timer processListTimer = new Timer(1000);
 
         private ObservableCollection<Process> processList;
@@ -47,22 +48,22 @@ namespace caow.ViewModel
 
         public float CurrentCPULoad
         {
-            get { return process.GetCPULoad(); }
+            get { return sysinfo.GetCPULoad(); }
         }
 
         public string CurrentRAMUsage
         {
-            get { return process.GetRAMUsage(); }
+            get { return sysinfo.GetRAMUsage(); }
         }
 
         public ObservableCollection<int> CPUReadingsHistory
         {
-            get { return new ObservableCollection<int>(process.GetCPUReadingHistory()); }
+            get { return new ObservableCollection<int>(sysinfo.GetCPUReadingHistory()); }
         }
 
         public ObservableCollection<int> RAMUsageHistory
         {
-            get { return new ObservableCollection<int>(process.GetRAMUsageHistory()); }
+            get { return new ObservableCollection<int>(sysinfo.GetRAMUsageHistory()); }
         }
 
         private ICommand selectedProcessChanged = null;

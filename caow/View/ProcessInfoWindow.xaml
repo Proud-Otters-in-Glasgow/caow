@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:caow.View"
         mc:Ignorable="d"
-        Title="ProcessInfoWindow" DataContext="{Binding RelativeSource={RelativeSource Self}}" Height="400" Width="400" Closing="Window_Closing">
+        DataContext="{Binding RelativeSource={RelativeSource Self}}" Height="400" Width="400" Closing="Window_Closing">
     <Window.Resources>
         <local:ProcessRAMConverter x:Key="RAMConverter"/>
+        <local:PriorityConverter x:Key="PriorityConverter"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -34,7 +35,7 @@
             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding process.ID}" FontFamily="Segoe UI Semibold" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding process.CPUUsage, StringFormat={}{0:#,#.00}%}" FontFamily="Segoe UI Semibold" FontSize="28" VerticalAlignment="Center" Name="CPUthing" HorizontalAlignment="Center"/>
             <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding process.RAMUsage, Converter={StaticResource RAMConverter}}" FontFamily="Segoe UI Semibold" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Row="3" Grid.Column="1" Text="" FontFamily="Segoe UI Semibold" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding process.Priority, Converter={StaticResource PriorityConverter}}" FontFamily="Segoe UI Semibold" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
     </Grid>
 </Window>

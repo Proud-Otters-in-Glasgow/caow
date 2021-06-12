@@ -59,14 +59,11 @@ namespace caow
 
                     Sort(sortBy, direction);
 
-                    // TODO: this whole arrow business doesn't really work, fix/remove l8r
-                    // Add an arrow to the sorted header
                     if (direction == ListSortDirection.Ascending)
                         headerClicked.Column.HeaderTemplate = Resources["HeaderTemplateArrowUp"] as DataTemplate;
                     else
                         headerClicked.Column.HeaderTemplate = Resources["HeaderTemplateArrowDown"] as DataTemplate;
 
-                    // Remove arrow from previously sorted header
                     if (_lastHeaderClicked != null && _lastHeaderClicked != headerClicked)
                         _lastHeaderClicked.Column.HeaderTemplate = null;
 
