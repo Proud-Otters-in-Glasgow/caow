@@ -121,7 +121,7 @@ namespace caow.ViewModel
                             Alerter.ErrorAlert(2);
                             return;
                         }
-                        var info = new ProcessInfoWindow(selectedProcess);
+                        var info = new ProcessInfoWindow(new ProcessCounter(selectedProcess));
                         info.ShowDialog();
                     },
                     (arg) => true);

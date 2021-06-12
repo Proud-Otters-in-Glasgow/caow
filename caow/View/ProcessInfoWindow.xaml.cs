@@ -10,9 +10,11 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Timers;
+using caow.Model;
 
 namespace caow.View
 {
@@ -21,47 +23,32 @@ namespace caow.View
     /// </summary>
     public partial class ProcessInfoWindow : Window
     {
-        public static readonly DependencyProperty ObservedProcess = DependencyProperty.Register(nameof(process), typeof(Process), typeof(ProcessInfoWindow), new FrameworkPropertyMetadata(null));
+        public static readonly DependencyProperty ObservedProcess = DependencyProperty.Register(nameof(process), typeof(ProcessCounter), typeof(ProcessInfoWindow), new FrameworkPropertyMetadata(null));
         //public static readonly DependencyProperty ObservedCPULoad = DependencyProperty.Register(nameof(CPULoad), typeof(int), typeof(ProcessInfoWindow), new FrameworkPropertyMetadata(null));
-        Timer processListTimer = new Timer(500);
-        private PerformanceCounter counter;
-        public Process process
+        public ProcessCounter process
         {
             get
             {
-                return (Process)GetValue(ObservedProcess);
+                return (ProcessCounter)GetValue(ObservedProcess);
             }
             set
             {
                 SetValue(ObservedProcess, value);
             }
         }
-        public float CPULoad
+
+        public ProcessInfoWindow(ProcessCounter p)
         {
-            
-            get
-            {
-                return counter.NextValue();
-            }
-            set
-            {
-                //SetValue(ObservedCPULoad, value);
-            }
-        }
-        private void UpdateProcess(Object source, ElapsedEventArgs e)
-        {
-            ((Process)GetValue(ObservedProcess)).Refresh();
-        }
-        public ProcessInfoWindow(Process processOfInterest)
-        {
-            process = processOfInterest;
-            counter = new PerformanceCounter("Process", "% Processor Time", process.ProcessName);
-            counter.NextValue();
-            counter.NextValue();
+            process = p;
+            //counter = new PerformanceCounter("Process", "% Processor Time", process.ProcessName);
+            //counter.NextValue();
+            //counter.NextValue();
             InitializeComponent();
-            processListTimer.Elapsed += UpdateProcess;
-            processListTimer.AutoReset = true;
-            processListTimer.Enabled = true;
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            process.Dispose();
         }
     }
 }

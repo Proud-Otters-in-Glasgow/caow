@@ -31,9 +31,8 @@
                             <GridView>
                                 <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding Id}" />
                                 <GridViewColumn Header="Nazwa" Width="200" DisplayMemberBinding="{Binding ProcessName}" />
-                                <GridViewColumn Header="Zużycie CPU" Width="100" DisplayMemberBinding="{Binding Placeholder}" />
                                 <GridViewColumn Header="Zużycie RAM" Width="120" DisplayMemberBinding="{Binding WorkingSet64, Converter={StaticResource RAMConverter}}"/>
-                                <GridViewColumn Header="Priorytet" Width="150" DisplayMemberBinding="{Binding PriorityClass}"/>
+                                <GridViewColumn Header="Priorytet" Width="150" />
                             </GridView>
                         </ListView.View>
                     </ListView>

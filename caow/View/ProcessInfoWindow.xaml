@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:caow.View"
         mc:Ignorable="d"
-        Title="ProcessInfoWindow" DataContext="{Binding RelativeSource={RelativeSource Self}}" Height="400" Width="400">
+        Title="ProcessInfoWindow" DataContext="{Binding RelativeSource={RelativeSource Self}}" Height="400" Width="400" Closing="Window_Closing">
     <Window.Resources>
         <local:ProcessRAMConverter x:Key="RAMConverter"/>
     </Window.Resources>
@@ -15,7 +15,7 @@
             <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="Proces:" FontSize="14" Margin="5"/>
-        <TextBlock Grid.Row="0" Text="{Binding process.ProcessName}" Margin="20,10,10,0" FontFamily="Segoe UI Semibold" FontSize="24" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="0" Text="{Binding process.Name}" Margin="20,10,10,0" FontFamily="Segoe UI Semibold" FontSize="24" VerticalAlignment="Center"/>
         <Grid Grid.Row="1" Margin="20,0,20,20">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -31,10 +31,10 @@
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Obciążenie CPU" FontSize="24" Margin="5" FontFamily="Segoe UI Light" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Zużycie RAM" FontSize="24" Margin="5" FontFamily="Segoe UI Light" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="3" Grid.Column="0" Text="Priorytet" FontSize="24" Margin="5" FontFamily="Segoe UI Light" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding process.Id}" FontFamily="Segoe UI Semibold" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CPULoad, StringFormat={}{0:#,#.00}%}" FontFamily="Segoe UI Semibold" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding process.WorkingSet64, Converter={StaticResource RAMConverter}}" FontFamily="Segoe UI Semibold" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding process.PriorityClass}" FontFamily="Segoe UI Semibold" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding process.ID}" FontFamily="Segoe UI Semibold" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding process.CPUUsage, StringFormat={}{0:#,#.00}%}" FontFamily="Segoe UI Semibold" FontSize="28" VerticalAlignment="Center" Name="CPUthing" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding process.RAMUsage, Converter={StaticResource RAMConverter}}" FontFamily="Segoe UI Semibold" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="" FontFamily="Segoe UI Semibold" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
     </Grid>
 </Window>
